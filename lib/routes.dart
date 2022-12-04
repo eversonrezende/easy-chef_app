@@ -1,3 +1,6 @@
+import 'package:easy_chef/components/table_component.dart' as tab;
+import 'package:easy_chef/components/table_component.dart';
+import 'package:easy_chef/routes/FormTable.dart';
 import 'package:easy_chef/routes/ingredients_screen.dart';
 import 'package:easy_chef/routes/login.dart';
 import 'package:easy_chef/routes/recipe_screen.dart';
@@ -5,14 +8,13 @@ import 'package:easy_chef/routes/tables_screen.dart';
 import 'package:flutter/material.dart';
 import 'models/form_add_ingredients.dart';
 import 'models/form_add_recipe.dart';
-import 'models/form_add_table.dart';
 
 class RouterGenerator {
   static const String login = '/login';
   static const String ingredientsScreen = '/ingredients';
   static const String recipeScreen = '/recipes';
   static const String tablesScreen = '/tables';
-  static const String formAddTable = '/add-table';
+  static const String formTable = '/add-table';
   static const String formAddRecipe = '/add-recipe';
   static const String formAddIngredient = '/add-ingredient';
 
@@ -37,9 +39,9 @@ class RouterGenerator {
         return MaterialPageRoute(
           builder: (_) => const TablesScreen(),
         );
-      case formAddTable:
+      case formTable:
         return MaterialPageRoute(
-          builder: (_) => const FormAddTable(),
+          builder: (_) => const FormTable(),
         );
       case formAddRecipe:
         return MaterialPageRoute(

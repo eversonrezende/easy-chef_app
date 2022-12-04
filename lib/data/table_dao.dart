@@ -1,6 +1,7 @@
 import 'package:easy_chef/data/database.dart';
-import 'package:easy_chef/models/Table.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../models/table_model.dart';
 
 class TableDao {
   static const String tableSql = 'CREATE TABLE $_tablename('
@@ -13,10 +14,10 @@ class TableDao {
   static const String _codigo = 'codigo';
   static const String _isOcupado = 'isOcupado';
 
-  save(Table mesa) async {
+  save(TableModel mesa) async {
     print('Iniciando o save: ');
     final Database bancoDeDados = await getDatabase();
-    var tableExists = await find(mesa.nome);
+    var tableExists = await find(mesa.name);
     Map<String, dynamic> tableMap = toMap(mesa);
 
     if (tableExists.isEmpty) {
@@ -28,22 +29,22 @@ class TableDao {
         _tablename,
         tableMap,
         where: '$_nome = ?',
-        whereArgs: [mesa.nome],
+        whereArgs: [mesa.name],
       );
     }
   }
 
-  Map<String, dynamic> toMap(Table mesa) {
+  Map<String, dynamic> toMap(TableModel mesa) {
     print('Convertendo Mesa em Map: ');
     final Map<String, dynamic> mapaDeMesas = {};
-    mapaDeMesas[_nome] = mesa.nome;
-    mapaDeMesas[_codigo] = mesa.codigo;
-    mapaDeMesas[_isOcupado] = mesa.isOcupado;
+    mapaDeMesas[_nome] = mesa.name;
+    mapaDeMesas[_codigo] = mesa.code;
+    mapaDeMesas[_isOcupado] = mesa.isFree;
     print('Mapa de Mesas: $mapaDeMesas');
     return mapaDeMesas;
   }
 
-  Future<List<Table>> findAll() async {
+  Future<List<TableModel>>? findAll() async {
     print('Acessando o findAll');
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result =
@@ -52,19 +53,19 @@ class TableDao {
     return toList(result);
   }
 
-  List<Table> toList(List<Map<String, dynamic>> listaDeMesas) {
+  List<TableModel> toList(List<Map<String, dynamic>> listaDeMesas) {
     print('Convertendo to List:');
-    final List<Table> mesas = [];
+    final List<TableModel> mesas = [];
     for (Map<String, dynamic> linha in listaDeMesas) {
-      final Table mesa = Table();
-      //final Table mesa = Table(linha[_nome], linha[_codigo], linha[_isOcupado]);
+      final TableModel mesa =
+          TableModel(linha[_nome], linha[_codigo], linha[_isOcupado]);
       mesas.add(mesa);
     }
     print('Lista de mesas $mesas');
     return mesas;
   }
 
-  Future<List<Table>> find(String nome) async {
+  Future<List<TableModel>> find(String nome) async {
     print('Acessando find: ');
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result = await bancoDeDados.query(

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class FormAddTable extends StatefulWidget {
-  const FormAddTable({Key? key}) : super(key: key);
+class TableComponent extends StatefulWidget {
+  const TableComponent(
+      {Key? key, required this.name, required this.code, required this.isFree})
+      : super(key: key);
+  final String name;
+  final int code;
+  final bool isFree;
 
   @override
-  State<FormAddTable> createState() => _FormAddTableState();
+  State<TableComponent> createState() => _TableComponentState();
 }
 
-class _FormAddTableState extends State<FormAddTable> {
-  bool ocupado = false;
-  int codigo = 1;
-
+class _TableComponentState extends State<TableComponent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,15 +33,15 @@ class _FormAddTableState extends State<FormAddTable> {
               children: [
                 Row(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15, top: 15, right: 5, bottom: 5),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 15, top: 15, right: 5, bottom: 5),
                       child: SizedBox(
-                        width: 55,
+                        width: 90,
                         height: 26,
                         child: Text(
-                          'Mesa',
-                          style: TextStyle(
-                              color: Colors.white, fontSize: 22),
+                          widget.name,
+                          style: TextStyle(color: Colors.white, fontSize: 22),
                         ),
                       ),
                     ),
@@ -49,8 +51,8 @@ class _FormAddTableState extends State<FormAddTable> {
                         width: 20,
                         height: 20,
                         child: Icon(
-                          ocupado ? Icons.check : Icons.not_interested,
-                          color: ocupado ? Colors.green : Colors.red,
+                          widget.isFree ? Icons.check : Icons.not_interested,
+                          color: widget.isFree ? Colors.green : Colors.red,
                         ),
                       ),
                     ),
@@ -59,7 +61,7 @@ class _FormAddTableState extends State<FormAddTable> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15, bottom: 5),
                   child: Text(
-                    'Código: $codigo',
+                    'Código: ${widget.code}',
                     style: const TextStyle(
                         color: Color.fromARGB(0xFF, 0x6C, 0x75, 0x7D),
                         fontSize: 12),
@@ -68,7 +70,7 @@ class _FormAddTableState extends State<FormAddTable> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: Text(
-                    'Ocupada:  ${ocupado ? "Sim" : "Não"}',
+                    'Ocupada:  ${widget.isFree ? "Sim" : "Não"}',
                     style: const TextStyle(
                         color: Color.fromARGB(0xFF, 0x6C, 0x75, 0x7D),
                         fontSize: 12),
@@ -80,7 +82,7 @@ class _FormAddTableState extends State<FormAddTable> {
               onTap: () {
                 Navigator.of(context).pop();
               },
-              child: Image.asset('assets/images/auto_stories_black_24dp 1.png'),
+              child: Image.asset('assets/images/recipes-icon.png'),
             ),
           ],
         ),
@@ -88,12 +90,3 @@ class _FormAddTableState extends State<FormAddTable> {
     );
   }
 }
-/*
-IconButton(
-onPressed: () {
-ocupado = !ocupado;
-},
-icon: Icon(Icons.edit),
-iconSize: 18,
-color: Colors.white,
-)*/

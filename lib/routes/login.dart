@@ -18,7 +18,7 @@ class Login extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Easy Chef'),
-          leading: Image.asset('assets/images/easy-chef-logo 1.png'),
+          leading: Image.asset('assets/images/easy-chef-logo.png'),
           backgroundColor: const Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
         ),
         body: Stack(
@@ -51,7 +51,7 @@ class Login extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset("assets/images/easy-chef-logo 1.png"),
+                            Image.asset("assets/images/easy-chef-logo.png"),
                             const Padding(
                               padding: EdgeInsets.only(left: 7),
                               child: Text(

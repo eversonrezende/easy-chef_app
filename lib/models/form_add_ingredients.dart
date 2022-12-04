@@ -24,7 +24,7 @@ class _FormAddIngredientsState extends State<FormAddIngredients> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 8),
-              child: Image.asset('assets/images/Ellipse-ingred.png'),
+              child: Image.asset('assets/images/ingredient-image.png'),
             ),
             const Text(
               'Farinha',

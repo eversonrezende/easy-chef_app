@@ -24,7 +24,7 @@ class _FormAddRecipeState extends State<FormAddRecipe> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 8),
-              child: Image.asset('assets/images/Ellipse 1.png'),
+              child: Image.asset('assets/images/cake-image.png'),
             ),
             const Text(
               'Bolo',

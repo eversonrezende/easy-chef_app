@@ -18,7 +18,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: Image.asset('assets/images/easy-chef-logo 1.png'),
+              child: Image.asset('assets/images/easy-chef-logo.png'),
             ),
             const Text('Easy Chef'),
           ],
@@ -77,7 +77,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 ListTile(
                   textColor: Colors.white,
                   leading:
-                      Image.asset('assets/images/table_bar_black_24dp 1.png'),
+                      Image.asset('assets/images/table-icon.png'),
                   title: Transform.translate(
                     offset: const Offset(-20, 0),
                     child: const Text('Mesas'),
@@ -90,7 +90,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 ListTile(
                   textColor: Colors.white,
                   leading: Image.asset(
-                      'assets/images/auto_stories_black_24dp 1.png'),
+                      'assets/images/recipes-icon.png'),
                   title: Transform.translate(
                     offset: const Offset(-20, 0),
                     child: const Text('Receitas'),
@@ -103,7 +103,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 ListTile(
                   textColor: Colors.white,
                   leading:
-                      Image.asset('assets/images/inventory_black_24dp 1.png'),
+                      Image.asset('assets/images/ingredient-icon.png'),
                   title: Transform.translate(
                     offset: const Offset(-20, 0),
                     child: const Text('Ingredientes'),
