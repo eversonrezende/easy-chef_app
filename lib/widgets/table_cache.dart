@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:easy_chef/models/table_model.dart';
 
 class TableCache {
@@ -28,4 +27,6 @@ class TableCache {
 
   UnmodifiableListView<TableModel> get list =>
       UnmodifiableListView<TableModel>(_tables);
+
+
 }

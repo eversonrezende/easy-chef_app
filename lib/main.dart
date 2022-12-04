@@ -1,4 +1,5 @@
 import 'package:easy_chef/routes.dart';
+import 'package:easy_chef/routes/form_table.dart';
 import 'package:easy_chef/routes/tables_screen.dart';
 import 'package:easy_chef/widgets/table_cache.dart';
 import 'package:flutter/material.dart';

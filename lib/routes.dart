@@ -1,8 +1,8 @@
 import 'package:easy_chef/components/table_component.dart' as tab;
 import 'package:easy_chef/components/table_component.dart';
-import 'package:easy_chef/routes/FormTable.dart';
+import 'package:easy_chef/routes/form_table.dart';
 import 'package:easy_chef/routes/ingredients_screen.dart';
-import 'package:easy_chef/routes/login.dart';
+import 'package:easy_chef/routes/login_screen.dart';
 import 'package:easy_chef/routes/recipe_screen.dart';
 import 'package:easy_chef/routes/tables_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class RouterGenerator {
     switch (settings.name) {
       case login:
         return MaterialPageRoute(
-          builder: (_) => Login(),
+          builder: (_) => LoginScreen(),
         );
       case ingredientsScreen:
         return MaterialPageRoute(

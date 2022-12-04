@@ -1,8 +1,8 @@
 import 'package:easy_chef/routes.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
 
