@@ -11,8 +11,7 @@ class RecipesModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void remove(int index)
-  {
+  void remove(int index) {
     recipes.removeAt(index);
     notifyListeners();
   }

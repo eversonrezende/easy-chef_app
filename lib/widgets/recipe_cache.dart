@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:easy_chef/models/recipe_model.dart';
 import 'package:flutter/material.dart';
 
-class RecipeCache with ChangeNotifier{
+class RecipeCache with ChangeNotifier {
   var _index = -1;
 
   final List<RecipeModel> _recipes = [

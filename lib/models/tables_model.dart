@@ -11,8 +11,7 @@ class TablesModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void remove(int index)
-  {
+  void remove(int index) {
     tables.removeAt(index);
     notifyListeners();
   }

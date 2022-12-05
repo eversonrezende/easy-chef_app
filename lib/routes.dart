@@ -5,15 +5,12 @@ import 'package:easy_chef/routes/recipes_screen.dart';
 import 'package:easy_chef/routes/tables_screen.dart';
 import 'package:flutter/material.dart';
 
-
 class RouterGenerator {
   static const String login = '/';
   static const String ingredientsScreen = '/ingredients';
   static const String recipesScreen = '/recipes';
   static const String tablesScreen = '/tables';
   static const String formTable = '/add_table';
-  /*static const String formAddRecipe = '/add-recipe';
-  static const String formAddIngredient = '/add-ingredient';*/
 
   RouterGenerator._();
 

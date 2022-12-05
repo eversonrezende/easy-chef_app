@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:easy_chef/models/table_model.dart';
 import 'package:flutter/cupertino.dart';
 
-class TableCache with ChangeNotifier{
+class TableCache with ChangeNotifier {
   var _index = -1;
 
   final List<TableModel> _tables = [
@@ -18,8 +18,7 @@ class TableCache with ChangeNotifier{
     _tables.add(TableModel(name: name, code: code, isFree: isFree));
   }
 
-  void remove(int index)
-  {
+  void remove(int index) {
     _tables.removeAt(index);
   }
 
