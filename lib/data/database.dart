@@ -1,4 +1,4 @@
-import 'package:easy_chef/data/table_dao.dart';
+/*import 'package:easy_chef/data/table_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -8,3 +8,4 @@ Future<Database> getDatabase() async {
     db.execute(TableDao.tableSql);
   }, version: 1,);
 }
+*/

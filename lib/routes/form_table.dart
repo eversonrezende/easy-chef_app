@@ -1,5 +1,7 @@
-import 'package:easy_chef/widgets/table_cache.dart';
+import 'package:easy_chef/models/table_model.dart';
+import 'package:easy_chef/models/tables_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FormTable extends StatefulWidget {
   const FormTable({Key? key}) : super(key: key);
@@ -50,7 +52,7 @@ class _FormTableState extends State<FormTable> {
                 border: Border.all(width: 3),
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.black12,
-                image: DecorationImage(
+                image: const DecorationImage(
                     image: AssetImage("assets/images/background.png"),
                     repeat: ImageRepeat.repeat),
               ),
@@ -63,7 +65,7 @@ class _FormTableState extends State<FormTable> {
                     child: TextFormField(
                       textAlign: TextAlign.center,
                       controller: nameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           errorStyle: TextStyle(color: Colors.white),
                           fillColor: Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
@@ -85,7 +87,7 @@ class _FormTableState extends State<FormTable> {
                     child: TextFormField(
                       textAlign: TextAlign.center,
                       controller: codeController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           errorStyle: TextStyle(color: Colors.white),
                           fillColor: Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
@@ -108,12 +110,12 @@ class _FormTableState extends State<FormTable> {
                       height: 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
+                        color: const Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Mesa Livre?",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -131,18 +133,27 @@ class _FormTableState extends State<FormTable> {
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Criando nova Mesa'),
-                          ),
-                        );
-                        Navigator.of(context).pop();
-                      }
+                  Consumer<TablesModel>(
+                    builder: (context, cache, _) {
+                      return ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            cache.tables.add(TableModel(
+                                name: nameController.text,
+                                code: int.parse(codeController.text),
+                                isFree: isChecked));
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Criando nova Mesa'),
+                              ),
+                            );
+                            Navigator.of(context).pop();
+                          }
+                        },
+                        child: const Text('Adicionar'),
+                      );
                     },
-                    child: Text('Adicionar'),
                   )
                 ],
               ),

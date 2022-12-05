@@ -1,16 +1,16 @@
 import 'package:easy_chef/routes.dart';
-import 'package:easy_chef/widgets/ingredient_cache.dart';
+import 'package:easy_chef/widgets/recipe_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class IngredientsScreen extends StatefulWidget {
-  const IngredientsScreen({Key? key}) : super(key: key);
+class RecipesScreen extends StatefulWidget {
+  const RecipesScreen({Key? key}) : super(key: key);
 
   @override
-  State<IngredientsScreen> createState() => _IngredientsScreenState();
+  State<RecipesScreen> createState() => _RecipesScreenState();
 }
 
-class _IngredientsScreenState extends State<IngredientsScreen> {
+class _RecipesScreenState extends State<RecipesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 "Receitas",
                 style: TextStyle(color: Colors.white, fontSize: 22),
               ),
-              Consumer<IngredientCache>(builder: (context, cache, _) {
+              Consumer<RecipeCache>(builder: (context, cache, _) {
                 return Expanded(
                     child: ListView.builder(
                         itemCount: cache.list.length,
@@ -73,11 +73,27 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                                         fontSize: 22, color: Colors.white),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 150),
-                                    child: Text(
-                                      'R\$ ${cache.list[index].price}',
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 12),
+                                    padding: const EdgeInsets.only(left: 120),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          '${cache.list[index].numberIngredient}x ingredientes',
+                                          style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  0xFF, 0x6C, 0x75, 0x7D),
+                                              fontSize: 12),
+                                        ),
+                                        Text(
+                                          'R\$ ${cache.list[index].price}',
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12),
+                                        ),
+                                      ],
                                     ),
                                   )
                                 ],

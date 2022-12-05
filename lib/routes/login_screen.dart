@@ -12,7 +12,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Form(
       key: _formKey,
       child: Scaffold(
@@ -125,7 +124,8 @@ class LoginScreen extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            Navigator.of(context).pushNamed(RouterGenerator.tablesScreen);
+                            Navigator.of(context)
+                                .pushNamed(RouterGenerator.tablesScreen);
                           }
                         },
                         style: ButtonStyle(
