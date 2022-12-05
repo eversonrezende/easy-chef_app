@@ -7,19 +7,22 @@ class TableCache with ChangeNotifier {
   var _index = -1;
 
   final List<TableModel> _tables = [
-    TableModel(name: 'Mesa 01', code: 1, isFree: true),
-    TableModel(name: 'Mesa 02', code: 2, isFree: false),
-    TableModel(name: 'Mesa 03', code: 3, isFree: false),
-    TableModel(name: 'Mesa 04', code: 4, isFree: true),
-    TableModel(name: 'Mesa 05', code: 5, isFree: true),
+    TableModel(tableNumber: 1, code: 1, isFree: true),
+    TableModel(tableNumber: 2, code: 2, isFree: false),
+    TableModel(tableNumber: 3, code: 3, isFree: false),
+    TableModel(tableNumber: 4, code: 4, isFree: true),
+    TableModel(tableNumber: 5, code: 5, isFree: true),
   ];
 
-  void addItem(String name, int code, bool isFree) {
-    _tables.add(TableModel(name: name, code: code, isFree: isFree));
+  void addItem(int tableNumber, int code, bool isFree) {
+    _tables
+        .add(TableModel(tableNumber: tableNumber, code: code, isFree: isFree));
+    notifyListeners();
   }
 
   void remove(int index) {
     _tables.removeAt(index);
+    notifyListeners();
   }
 
   int get index => _index;

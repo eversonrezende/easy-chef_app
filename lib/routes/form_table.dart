@@ -139,7 +139,7 @@ class _FormTableState extends State<FormTable> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             cache.tables.add(TableModel(
-                                name: nameController.text,
+                                tableNumber: int.parse(nameController.text),
                                 code: int.parse(codeController.text),
                                 isFree: isChecked));
 

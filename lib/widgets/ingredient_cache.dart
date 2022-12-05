@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:easy_chef/models/ingredient_model.dart';
 import 'package:flutter/material.dart';
 
-class IngredientCache with ChangeNotifier{
+class IngredientCache with ChangeNotifier {
   var _index = -1;
 
   final List<IngredientModel> _ingredients = [

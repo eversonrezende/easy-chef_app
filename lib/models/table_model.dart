@@ -1,7 +1,8 @@
 class TableModel {
-  final String name;
+  final int? tableNumber;
   final int code;
-  final bool isFree;
+  late bool isFree;
 
-  TableModel({required this.name, required this.code, required this.isFree});
+  TableModel(
+      {required this.tableNumber, required this.code, required this.isFree});
 }

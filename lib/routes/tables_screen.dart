@@ -36,37 +36,38 @@ class _TablesScreenState extends State<TablesScreen> {
               repeat: ImageRepeat.repeat),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Mesas",
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RouterGenerator.formTable);
-                },
-                style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      side: const BorderSide(color: Colors.white),
+            padding: const EdgeInsets.all(5.0),
+            child: Consumer<TableCache>(builder: (context, cache, _) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Mesas",
+                    style: TextStyle(color: Colors.white, fontSize: 22),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      cache.addItem(
+                          cache.list.length + 1, cache.list.length + 1, false);
+                      //Navigator.of(context).pushNamed(RouterGenerator.formTable);
+                    },
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          side: const BorderSide(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    child: Container(
+                      alignment: AlignmentDirectional.center,
+                      width: 355,
+                      child: const Text('Nova Mesa'),
                     ),
                   ),
-                ),
-                child: Container(
-                  alignment: AlignmentDirectional.center,
-                  width: 355,
-                  child: const Text('Nova Mesa'),
-                ),
-              ),
-              Consumer<TableCache>(
-                builder: (context, cache, _) {
-                  return Expanded(
+                  Expanded(
                     child: ListView.builder(
                       itemCount: cache.list.length,
                       itemBuilder: (context, index) {
@@ -98,7 +99,7 @@ class _TablesScreenState extends State<TablesScreen> {
                                             width: 90,
                                             height: 26,
                                             child: Text(
-                                              cache.list[index].name,
+                                              'Mesa: ${cache.list[index].tableNumber}',
                                               style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 22),
@@ -156,8 +157,8 @@ class _TablesScreenState extends State<TablesScreen> {
                                       IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            //cache.tables[index].isFree = !cache.tables[index].isFree;
-                                            cache.remove(index);
+                                            cache.list[index].isFree =
+                                                !cache.list[index].isFree;
                                           });
                                         },
                                         icon: const Icon(Icons.edit),
@@ -172,12 +173,10 @@ class _TablesScreenState extends State<TablesScreen> {
                         );
                       },
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
+                  ),
+                ],
+              );
+            })),
       ),
       drawer: SizedBox(
         width: 280,
