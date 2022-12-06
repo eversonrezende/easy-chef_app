@@ -41,7 +41,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Receitas",
+                "Ingredientes",
                 style: TextStyle(color: Colors.white, fontSize: 22),
               ),
               Consumer<IngredientCache>(builder: (context, cache, _) {
@@ -116,7 +116,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context)
-                        .pushReplacementNamed(RouterGenerator.tablesScreen);
+                        .pushNamed(RouterGenerator.tablesScreen);
                   },
                 ),
                 ListTile(
@@ -140,7 +140,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context)
-                        .pushNamed(RouterGenerator.ingredientsScreen);
+                        .pushReplacementNamed(RouterGenerator.ingredientsScreen);
                   },
                 ),
               ],

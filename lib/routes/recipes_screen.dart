@@ -132,7 +132,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context)
-                        .pushReplacementNamed(RouterGenerator.tablesScreen);
+                        .pushNamed(RouterGenerator.tablesScreen);
                   },
                 ),
                 ListTile(
@@ -144,7 +144,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context)
-                        .pushNamed(RouterGenerator.recipesScreen);
+                        .pushReplacementNamed(RouterGenerator.recipesScreen);
                   },
                 ),
                 ListTile(
