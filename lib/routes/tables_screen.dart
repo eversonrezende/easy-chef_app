@@ -15,7 +15,7 @@ class _TablesScreenState extends State<TablesScreen> {
   List tables = [];
 
   Future<List> showAllTables() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(days: 1));
 
     final response = await http
         .get(Uri.parse('https://servidor.easychef.click/api/Mesa/All'));

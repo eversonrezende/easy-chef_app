@@ -121,7 +121,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
                                               fontSize: 12),
                                         ),
                                         Text(
-                                          'R\$ ${cache.list[index].price}',
+                                          real.format(cache.list[index].price),
                                           style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 12),
