@@ -1,7 +1,9 @@
+import 'package:easy_chef/config/app_settings.dart';
 import 'package:easy_chef/routes.dart';
 import 'package:easy_chef/widgets/recipe_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class RecipesScreen extends StatefulWidget {
   const RecipesScreen({Key? key}) : super(key: key);
@@ -11,21 +13,52 @@ class RecipesScreen extends StatefulWidget {
 }
 
 class _RecipesScreenState extends State<RecipesScreen> {
+  late NumberFormat real;
+  late Map<String, String> loc;
+
+  readNumberFormat() {
+    loc = context.watch<AppSettings>().locale;
+    real = NumberFormat.currency(locale: loc['locale'], name: loc['name']);
+  }
+
+  changeLanguageButton() {
+    final locale = loc['locale'] == 'pt_BR' ? 'en_US' : 'pt_BR';
+    final name = loc['locale'] == 'pt_BR' ? '\$' : 'R\$';
+
+    return PopupMenuButton(
+      icon: Icon(Icons.language),
+      itemBuilder: (context) => [
+        PopupMenuItem(
+            child: ListTile(
+          leading: Icon(Icons.swap_vert),
+          title: Text('Usar $locale'),
+          onTap: () {
+            context.read<AppSettings>().setLocale(locale, name);
+            Navigator.pop(context);
+          },
+        )),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    readNumberFormat();
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Image.asset('assets/images/easy-chef-logo.png'),
-            ),
-            const Text('Easy Chef'),
-          ],
-        ),
-        backgroundColor: const Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
-      ),
+          title: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Image.asset('assets/images/easy-chef-logo.png'),
+              ),
+              const Text('Easy Chef'),
+            ],
+          ),
+          backgroundColor: const Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
+          actions: [
+            changeLanguageButton(),
+          ]),
       body: Container(
         width: 500,
         height: 700,

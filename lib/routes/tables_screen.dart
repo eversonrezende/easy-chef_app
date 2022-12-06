@@ -25,19 +25,45 @@ class _TablesScreenState extends State<TablesScreen> {
     return tables;
   }
 
-  //CONFERIR SE URL PARA CRIAR É ASSIM
-  Future<http.Response> createTables(String nome, bool ocupada) async {
+  Future<http.Response> createTables(String mesa) async {
     final response = await http.post(
-      Uri.parse('https://servidor.easychef.click/api/Mesa/All'),
-      body: {'nome': nome, 'ocupada': ocupada},
-    );
+        Uri.parse('https://servidor.easychef.click/api/Mesa/Add'),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json",
+        },
+        body: jsonEncode({"nome": mesa, "codigo": "", "ocupada": true}));
+
     return response;
   }
 
-  //CONFERIR SE URL PARA DELETAR É ASSIM
-  Future<http.Response> deleteGame(String name) async {
+  Future<http.Response> editaTables(
+      String id, String nome, bool ocupada) async {
+    if (ocupada == true) {
+      ocupada = false;
+    } else {
+      ocupada = true;
+    }
+
+    final response = await http.put(
+        Uri.parse('https://servidor.easychef.click/api/Mesa/Edit'),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json",
+        },
+        body: jsonEncode(
+            {"id": id, "nome": nome, "codigo": "", "ocupada": ocupada}));
+
+    return response;
+  }
+
+  Future<http.Response> deleteTable(String id) async {
     final http.Response response = await http.delete(
-      Uri.parse('https://servidor.easychef.click/api/Mesa/$name'),
+      Uri.parse('https://servidor.easychef.click/api/Mesa/Delete/$id'),
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json",
+      },
     );
 
     return response;
@@ -83,6 +109,7 @@ class _TablesScreenState extends State<TablesScreen> {
                         allTables.map<String>((e) => e['codigo']).toList();
                     List ocupada =
                         allTables.map<bool>((e) => e['ocupada']).toList();
+                    List id = allTables.map<String>((e) => e['id']).toList();
                     return Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -92,15 +119,10 @@ class _TablesScreenState extends State<TablesScreen> {
                             style: TextStyle(color: Colors.white, fontSize: 22),
                           ),
                           TextButton(
-                            //AQUI VERIFICAR O PORQUE DE NAO ESTAR ADICIONANDO
                             onPressed: () {
                               setState(() {
-                                createTables("Mesa Extra", true);
+                                createTables("Mesa");
                               });
-
-                              /*cache.addItem(
-                        cache.list.length + 1, cache.list.length + 1, false);*/
-                              //Navigator.of(context).pushNamed(RouterGenerator.formTable);
                             },
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
@@ -147,10 +169,10 @@ class _TablesScreenState extends State<TablesScreen> {
                                                   right: 5,
                                                   bottom: 5),
                                               child: SizedBox(
-                                                width: 90,
+                                                width: 120,
                                                 height: 26,
                                                 child: Text(
-                                                  mesas[i].toUpperCase(),
+                                                  mesas[i],
                                                   style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 22),
@@ -211,10 +233,21 @@ class _TablesScreenState extends State<TablesScreen> {
                                           IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                ocupada[i] = !ocupada[i];
+                                                editaTables(id[i], mesas[i],
+                                                    ocupada[i]);
                                               });
                                             },
                                             icon: const Icon(Icons.edit),
+                                            color: Colors.white,
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                deleteTable(id[i]);
+                                              });
+                                            },
+                                            icon: const Icon(Icons
+                                                .highlight_remove_outlined),
                                             color: Colors.white,
                                           ),
                                         ],
