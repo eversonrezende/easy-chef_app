@@ -25,11 +25,21 @@ class _TablesScreenState extends State<TablesScreen> {
     return tables;
   }
 
+  //CONFERIR SE URL PARA CRIAR É ASSIM
   Future<http.Response> createTables(String nome, bool ocupada) async {
     final response = await http.post(
       Uri.parse('https://servidor.easychef.click/api/Mesa/All'),
       body: {'nome': nome, 'ocupada': ocupada},
     );
+    return response;
+  }
+
+  //CONFERIR SE URL PARA DELETAR É ASSIM
+  Future<http.Response> deleteGame(String name) async {
+    final http.Response response = await http.delete(
+      Uri.parse('https://servidor.easychef.click/api/Mesa/$name'),
+    );
+
     return response;
   }
 
@@ -62,37 +72,6 @@ class _TablesScreenState extends State<TablesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Mesas",
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              ),
-              TextButton(
-                //AQUI VERIFICAR O PORQUE DE NAO ESTAR ADICIONANDO
-                onPressed: () {
-                  setState(() {
-                    createTables("Mesa Extra", true);
-                  });
-
-                  /*cache.addItem(
-                        cache.list.length + 1, cache.list.length + 1, false);*/
-                  //Navigator.of(context).pushNamed(RouterGenerator.formTable);
-                },
-                style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      side: const BorderSide(color: Colors.white),
-                    ),
-                  ),
-                ),
-                child: Container(
-                  alignment: AlignmentDirectional.center,
-                  width: 355,
-                  child: const Text('Nova Mesa'),
-                ),
-              ),
               FutureBuilder(
                 future: showAllTables(),
                 builder: (context, snapshot) {
@@ -108,6 +87,38 @@ class _TablesScreenState extends State<TablesScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListView(children: [
+                          const Text(
+                            "Mesas",
+                            style: TextStyle(color: Colors.white, fontSize: 22),
+                          ),
+                          TextButton(
+                            //AQUI VERIFICAR O PORQUE DE NAO ESTAR ADICIONANDO
+                            onPressed: () {
+                              setState(() {
+                                createTables("Mesa Extra", true);
+                              });
+
+                              /*cache.addItem(
+                        cache.list.length + 1, cache.list.length + 1, false);*/
+                              //Navigator.of(context).pushNamed(RouterGenerator.formTable);
+                            },
+                            style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  side: const BorderSide(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            child: Container(
+                              alignment: AlignmentDirectional.center,
+                              width: 355,
+                              child: const Text('Nova Mesa'),
+                            ),
+                          ),
                           for (int i = 0; i < allTables.length; i++)
                             Padding(
                               padding: const EdgeInsets.only(bottom: 5),
