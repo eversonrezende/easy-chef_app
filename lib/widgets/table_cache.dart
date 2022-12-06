@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:easy_chef/models/table_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TableCache with ChangeNotifier {
   var _index = -1;

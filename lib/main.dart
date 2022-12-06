@@ -1,4 +1,3 @@
-
 import 'package:easy_chef/config/app_settings.dart';
 import 'package:easy_chef/config/hive_config.dart';
 import 'package:easy_chef/routes.dart';
