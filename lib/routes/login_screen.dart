@@ -152,16 +152,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-/*child: Center(
-child: Container(
-width: 304,
-height: 321,
-decoration: BoxDecoration(
-color: Color.fromARGB(0xFF, 0x10, 0x24, 0x34),
-borderRadius: BorderRadius.circular(15),
-border: Border.all(color: Color.fromARGB(0xFF, 0x1D, 0x41, 0x5E))),
-child: Column(),
-),
-),
-*/

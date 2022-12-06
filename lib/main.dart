@@ -1,11 +1,13 @@
+
 import 'package:easy_chef/routes.dart';
 import 'package:easy_chef/widgets/ingredient_cache.dart';
 import 'package:easy_chef/widgets/recipe_cache.dart';
 import 'package:easy_chef/widgets/table_cache.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
-void main() {
+main() {
   runApp(const MyApp());
 }
 
