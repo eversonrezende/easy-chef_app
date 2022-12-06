@@ -67,7 +67,12 @@ class _TablesScreenState extends State<TablesScreen> {
                 style: TextStyle(color: Colors.white, fontSize: 22),
               ),
               TextButton(
+                //AQUI VERIFICAR O PORQUE DE NAO ESTAR ADICIONANDO
                 onPressed: () {
+                  setState(() {
+                    createTables("Mesa Extra", true);
+                  });
+
                   /*cache.addItem(
                         cache.list.length + 1, cache.list.length + 1, false);*/
                   //Navigator.of(context).pushNamed(RouterGenerator.formTable);
